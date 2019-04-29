@@ -4,19 +4,28 @@ var Pollbot = require('./pollbot.js')
 test('parse ask', function (t) {
   var bot = new Pollbot()
   var question = `pollbot: ask "question"
-    answer1
-answer2
- answer3
+    answer0
+answer1
+ answer2
   `
-  var matches = bot.parse(question)
-  t.same(matches.cmd, 'ask')
+
+  console.log(question)
+  console.log(bot.getResponse(question))
   t.same(bot.question, 'question')
-  t.same(bot.answers, ['answer1', 'answer2', 'answer3'])
+  t.same(bot.answers, ['answer0', 'answer1', 'answer2'])
 
-  var answer = `pollbot: answer 0`
+  var answer = `pollbot answer 0`
+  console.log(answer)
+  console.log(bot.getResponse(answer))
 
-  var response = bot.parse(answer)
-  console.log(response)
+  t.same(bot.results[bot.answers[0]], 1)
+  t.same(bot.results[bot.answers[1]], 0)
+  t.same(bot.results[bot.answers[2]], 0)
+
+  var close = `pollbot close`
+  console.log(close)
+  console.log(bot.getResponse(close))
+
+  t.same(bot.question, false)
   t.end()
 })
-

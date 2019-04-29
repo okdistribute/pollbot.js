@@ -19,7 +19,8 @@ Pollbot only does one poll at a time.
 
 ```
 user2> pollbot ask "sd,,fs."
-pollbot> Can't make a poll, a poll is currently in progress by user1!
+pollbot> Can't make a poll, a poll is currently in progress! Use `pollbot
+close` to get results and then try asking again.
 ```
 
 #### `help`
@@ -27,14 +28,14 @@ pollbot> Can't make a poll, a poll is currently in progress by user1!
 If there is a poll in progress:
 ```
 user2> pollbot help
-pollbot> user1 asks "when are you free for camping?"
+pollbot> current poll: "when are you free for camping?"
 
 Options: 
-1: june 1-3
-2: june 12-14
-3: July 3-7
-4: august 23-27
-5: none
+0: june 1-3
+1: june 12-14
+2: July 3-7
+3: august 23-27
+4: none
 
 Say something like "pollbot answer 1" to respond!
 Say "pollbot close" to get results and start a new poll.
@@ -55,7 +56,7 @@ say `pollbot close`.
 user2> pollbot answer 1
 pollbot> got option #1 
 
-user4> pollbot answer july 3-7
+user4> pollbot answer 3
 pollbot> got option #3 
 
 user2> pollbot answer 6

@@ -1,35 +1,53 @@
+var english = require('./_locales/en.json')
+
 class Pollbot {
-  constructor () {
+  constructor (locale) {
     this.question = false
     this.answers = []
     this.results = {}
+    this._locales = english // TODO: dynamically pick locale
+    this._answer = this._answer.bind(this)
   }
 
   parse (text) {
-    var match = /^pollbot:? (ask|answer|close) "(.+?)"([\s\S]+)/.exec(text)
+    var match = /^pollbot:? (ask|answer|close)[\s\S]?([\s\S]+)?/.exec(text)
     if (!match) return false
     var cmd = match[1]
+    return {cmd, text: match[2]}
+  }
+
+  getResponse (input) {
+    var {cmd, text} = this.parse(input)
     switch (cmd) {
       case 'ask':
-        var question = match[2]
-        var answers = match[3].split('\n').filter((x) => /\w/.test(x)).map((x) => x.trim())
+        var ask = /"(.+?)"([\s\S]+)?/.exec(text)
+        if (!ask) return 'boo'
+        var question = ask[1]
+        var answers = ask[2].split('\n').filter((x) => /\w/.test(x)).map((x) => x.trim())
         return this.ask(question, answers)
-        break
       case 'answer':
-        var response = match[2]
+        var response = text
         return this.answer(response)
-        break
       case 'close':
         return this.close()
-        break
+      case 'info':
+        return this.info()
+      case 'help':
+        return this.help()
       default:
         return false
     }
-    if (!answers) return false
-    return {
-      cmd: cmd,
-      match: match
-    }
+  }
+
+  info () {
+    if (!this.question) return this.help()
+    var answers = this._answersString()
+    return `Current poll: ${this.question}\n\n${answers}\nSay 'pollbot answer 0' or 'pollbot close'\n`
+  }
+
+  help () {
+    if (this.question) return this.info()
+    else return english['help']
   }
 
   ask (question, answers) {
@@ -39,18 +57,31 @@ class Pollbot {
     answers.forEach((answer) => {
       this.results[answer] = 0
     })
-    return 'answers'
+    return this.info()
   }
 
   answer (response) {
     var res = this.answers[parseInt(response)]
-    if (!res) return new Error(`cant find answer with id ${response}`)
+    if (!res) return "I didn't understand '6', maybe that answer doesn't exist! Try 'pollbot help'"
     this.results[res] += 1
-    return 'answered!'
+    return `got option #${response}`
+  }
+
+  _answer (answer, i) {
+    // markdown *
+    return `* ${i}: ${answer} (${this.results[answer]})`
+  }
+
+  _answersString () {
+    return this.answers.map(this._answer.bind(this)).join('\n')
   }
 
   close () {
-    return Object.keys(this.results).map((answer) => `${answer}: ${this.results[answer]}`).join('\n')
+    var text = `Poll closed! Results:\n\n${this._answersString()}`
+    this.question = false
+    this.answers = []
+    this.results = {}
+    return text
   }
 }
 

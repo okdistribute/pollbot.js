@@ -1,0 +1,3 @@
+{
+  "help": "There is no poll in progress! Use 'pollbot ask <question> <answer> <answer>...' and 'pollbot answer' to respond. When the poll is done, say 'pollbot close'."
+}
