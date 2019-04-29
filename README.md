@@ -1,4 +1,4 @@
-# deltachat-pollbot
+# pollbot.js
 
  A text-based bot that does polls
 

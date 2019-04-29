@@ -1,5 +1,5 @@
 {
-  "name": "questionbot",
+  "name": "pollbot.js",
   "version": "1.0.0",
   "description": "a text-based bot for creating polls in a chat app",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/karissa/questionbot.git"
+    "url": "http://github.com/karissa/pollbot.js.git"
   },
   "author": "Karissa <karissa@github",
   "license": "MIT",
