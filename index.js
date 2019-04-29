@@ -10,6 +10,7 @@ class Pollbot {
   }
 
   parse (text) {
+    text = text.toLowerCase()
     var match = /^pollbot:? (ask|answer|close)[\s\S]?([\s\S]+)?/.exec(text)
     if (!match) return false
     var cmd = match[1]
@@ -26,7 +27,7 @@ class Pollbot {
         var answers = ask[2].split('\n').filter((x) => /\w/.test(x)).map((x) => x.trim())
         return this.ask(question, answers)
       case 'answer':
-        var response = text
+        var response = text.trim()
         return this.answer(response)
       case 'close':
         return this.close()
@@ -62,7 +63,8 @@ class Pollbot {
 
   answer (response) {
     var res = this.answers[parseInt(response)]
-    if (!res) return "I didn't understand '6', maybe that answer doesn't exist! Try 'pollbot help'"
+    if (!res) res = this.results[response]
+    if (!res) return `I didn't understand ${response}, maybe that answer doesn't exist! Try 'pollbot help'`
     this.results[res] += 1
     return `got option #${response}`
   }
