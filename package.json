@@ -1,0 +1,14 @@
+{
+  "name": "deltachat-pollbot",
+  "version": "1.0.0",
+  "description": "a text-based poll bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "tape": "^4.10.1"
+  }
+}
