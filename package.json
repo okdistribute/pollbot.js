@@ -1,7 +1,7 @@
 {
-  "name": "generic-pollbot",
+  "name": "questionbot",
   "version": "1.0.0",
-  "description": "a text-based poll bot",
+  "description": "a text-based bot for creating polls in a chat app",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"

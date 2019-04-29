@@ -1,5 +1,5 @@
 var test = require('tape')
-var Pollbot = require('./pollbot.js')
+var Pollbot = require('./')
 
 test('parse ask', function (t) {
   var bot = new Pollbot()
