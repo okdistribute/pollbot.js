@@ -1,6 +1,6 @@
 {
   "name": "pollbot.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a text-based bot for creating polls in a chat app",
   "main": "index.js",
   "scripts": {
