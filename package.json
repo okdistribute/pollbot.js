@@ -1,14 +1,14 @@
 {
-  "name": "deltachat-pollbot",
+  "name": "generic-pollbot",
   "version": "1.0.0",
   "description": "a text-based poll bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
-  "author": "",
+  "author": "Karissa <karissa@github",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "tape": "^4.10.1"
   }
 }

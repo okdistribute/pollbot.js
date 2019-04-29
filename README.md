@@ -72,5 +72,6 @@ user2> pollbot: close
 pollbot> "poll is closed! results: A=23, B=1, C=5" 
 ```
 
+### License 
 
-
+MIT
