@@ -11,11 +11,11 @@ june 1-3
 june 12-14
 July 3-7
 august 23-27
-none
 pollbot> poll created!
 ```
 
-Pollbot only does one poll at a time.
+Pollbot only does one poll at a time. Each answer should be separated by
+arbitrary whitespace (newlines count).
 
 ```
 user2> pollbot ask "sd,,fs."
