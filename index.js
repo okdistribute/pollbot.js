@@ -11,7 +11,7 @@ class Pollbot {
 
   parse (text) {
     text = text.toLowerCase()
-    var match = /^pollbot:? (ask|answer|close)[\s\S]?([\s\S]+)?/.exec(text)
+    var match = /^pollbot:? (ask|answer|close|info|help)[\s\S]?([\s\S]+)?/.exec(text)
     if (!match) return false
     var cmd = match[1]
     return {cmd, text: match[2]}
