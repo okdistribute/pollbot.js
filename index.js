@@ -51,7 +51,7 @@ class Pollbot {
   }
 
   ask (question, answers) {
-    if (this.question) return new Error('question already in progress')
+    if (this.question) return 'Question already in progress'
     this.question = question
     this.answers = answers
     answers.forEach((answer) => {
