@@ -6,6 +6,10 @@
   "scripts": {
     "test": "node test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/karissa/questionbot.git"
+  },
   "author": "Karissa <karissa@github",
   "license": "MIT",
   "devDependencies": {
