@@ -3,7 +3,7 @@ var Pollbot = require('./')
 
 test('parse ask', function (t) {
   var bot = new Pollbot()
-  var question = `pollbot: ask "question"
+  var question = `poll ask "question"
     answer0
 answer1
  answer2
@@ -14,7 +14,7 @@ answer1
   t.same(bot.question, 'question')
   t.same(bot.answers, ['answer0', 'answer1', 'answer2'])
 
-  var answer = `pollbot answer 0`
+  var answer = `poll answer 0`
   console.log(answer)
   console.log(bot.getResponse(answer))
 
@@ -22,7 +22,7 @@ answer1
   t.same(bot.results[bot.answers[1]], 0)
   t.same(bot.results[bot.answers[2]], 0)
 
-  var close = `pollbot close`
+  var close = `poll close`
   console.log(close)
   console.log(bot.getResponse(close))
 

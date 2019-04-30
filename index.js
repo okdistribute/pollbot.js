@@ -1,6 +1,6 @@
 var english = require('./_locales/en.json')
 
-class Pollbot {
+class Poll {
   constructor (locale) {
     this.question = false
     this.answers = []
@@ -11,7 +11,7 @@ class Pollbot {
 
   parse (text) {
     text = text.toLowerCase()
-    var match = /^pollbot:? (ask|answer|close|info|help)[\s\S]?([\s\S]+)?/.exec(text)
+    var match = /^poll:? (ask|answer|close|info|help)[\s\S]?([\s\S]+)?/.exec(text)
     if (!match) return false
     var cmd = match[1]
     return {cmd, text: match[2]}
@@ -43,7 +43,7 @@ class Pollbot {
   info () {
     if (!this.question) return this.help()
     var answers = this._answersString()
-    return `Current poll: ${this.question}\n\n${answers}\nSay 'pollbot answer 0' or 'pollbot close'\n`
+    return `Current poll: ${this.question}\n\n${answers}\nTo answer, say 'poll answer this is myanswer'. Say 'poll close' when you are done.\n`
   }
 
   help () {
@@ -64,7 +64,7 @@ class Pollbot {
   answer (response) {
     var res = this.answers[parseInt(response)]
     if (!res) res = this.results[response]
-    if (!res) return `I didn't understand ${response}, maybe that answer doesn't exist! Try 'pollbot help'`
+    if (!res) return `I didn't understand ${response}, maybe that answer doesn't exist! Try 'poll help'`
     this.results[res] += 1
     return `got option #${response}`
   }
@@ -87,4 +87,4 @@ class Pollbot {
   }
 }
 
-module.exports = Pollbot
+module.exports = Poll
